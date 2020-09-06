@@ -27,6 +27,7 @@ const  authRoutes = require("./routes/auth");
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(cookieParser());
 app.use("/", postRoutes);
 app.use("/", authRoutes);
 //Creating  custom port
