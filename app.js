@@ -6,6 +6,7 @@ dotenv.config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
+var cookieParser = require('cookie-parser');
 
 //Connect DataBase
 mongoose
