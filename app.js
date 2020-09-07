@@ -24,7 +24,7 @@ mongoose.connection.on('error', err => {
 const postRoutes = require("./routes/post");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-
+//
 //Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
