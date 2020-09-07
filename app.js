@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 //Connect DataBase
 mongoose
@@ -21,15 +22,25 @@ mongoose.connection.on('error', err => {
 });
 //Routes
 const postRoutes = require("./routes/post");
-const  authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 //Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use(cookieParser());
+app.use(cors());
 app.use("/", postRoutes);
 app.use("/", authRoutes);
+app.use("/", userRoutes);
+
+
+app.use(function(err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({ error: 'Unauthorized!' });
+    }
+});
 //Creating  custom port
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

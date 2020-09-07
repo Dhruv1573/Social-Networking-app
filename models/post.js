@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { ObjectId } = mongoose.Schema;
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -11,6 +11,14 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
         maxlength:500
+    },
+    postedBy: {
+        type: ObjectId,
+        ref:"User"
+    },
+    created: {
+        type: Date,
+        default:Date.now
     }
 });
 
